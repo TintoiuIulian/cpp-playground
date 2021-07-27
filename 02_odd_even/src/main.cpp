@@ -47,11 +47,18 @@ int main(int argc, char *argv[])
 	//should use atoi?
 	// or std::stoi?
 
-	std::cout << argumentAsString << std::endl; // i think this should be removed
+	try
+	{
+		number = std::stoi(argv[1]);
+		printOddOrEven( number);
+	}
 
 	// --------------- stop
-
-	printOddOrEven(number);
+	catch (...)
+	{
+		printf("NAN\n");
+	}
+	
 
 	return 0;
 }

@@ -1,10 +1,45 @@
 #include <iostream>
+#include <math.h>
 
 bool isArmstrongNumber(int number)
 {
-	// TODO: implement some functionality to see if this number is an armstrong number
+	int  temp, rem;
+	int sum = 0, n = 0;
 
-	return false;
+	std::cout << "Enter positive number: ";
+	std::cin >> number;
+
+	temp = number;
+
+	//logic to find the number of digits in a given number
+	while (temp != 0)
+	{
+		temp = temp / 10;
+		n++;
+	}
+
+	temp = number;
+
+	while (temp != 0)
+	{
+		rem = temp % 10; //storing individual digit of original number in rem
+		sum = sum + pow(rem, n); //computing power of digits of original number
+		temp = temp / 10;
+	}
+
+	if (number == sum)
+	{
+	
+		std::cout << number << " is an Armstrong number" << std::endl;
+		return true;
+	}
+	else
+	{
+		std::cout << number << " is not an Armstrong number" << std::endl;
+		return false;
+	}
+		
+	
 }
 
 void printIsArmstrong(int number)
@@ -19,7 +54,7 @@ void printIsArmstrong(int number)
 	}
 }
 
-int main(int argc, char *argv[])
+int main()
 {
 	// What is this program expected to do?
 	// - Shows whether an argument is an armstrong number.
@@ -40,16 +75,11 @@ int main(int argc, char *argv[])
 	//		  03_armstrong.exe 154		=> Output: NOT Armstrong
 	//
 
-	// Make sure there are some program arguments available.
-	if (argc <= 1)
-	{
-		std::cout << "No program arguments found." << std::endl;
-		return 1;
-	}
+	
 
-	int readNumber = 0;
+	int readNumber = 153;
 	// Get the first argument
-	std::string argumentAsString = argv[1];
+	//std::string argumentAsString = argv[1];
 	
 	// TODO: read number / cast to integer
 

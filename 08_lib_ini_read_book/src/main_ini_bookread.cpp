@@ -48,6 +48,97 @@ std::vector<Book> readBooksFromIniFile(const std::string& file_name)
 	std::vector<Book> results;
 	// TODO: BEGIN read the file -------------------------------------
 	
+	CSimpleIniA ini;
+	ini.SetUnicode();
+	const char* name1;
+	const char* auth1;
+	const char* name2;
+	const char* auth2;
+	const char* name3;
+	const char* auth3;
+	const char* name4;
+	const char* auth4;
+
+	ini.LoadFile("../../data/ermahgerd_berks.ini");
+
+	name1 = ini.GetValue("book.1", "name");
+	auth1 = ini.GetValue("book.1", "author");
+
+	name2 = ini.GetValue("book.2", "name");
+	auth2 = ini.GetValue("book.2", "author");
+
+	name3 = ini.GetValue("book.3", "name");
+	auth3 = ini.GetValue("book.3", "author");
+
+	name4 = ini.GetValue("book.4", "name");
+	auth4 = ini.GetValue("book.4", "author");
+
+	std::string book1;
+	std::string author1;
+	std::stringstream ss_b1;
+	std::stringstream ss_a1;
+
+	std::string book2;
+	std::string author2;
+	std::stringstream ss_b2;
+	std::stringstream ss_a2;
+
+	std::string book3;
+	std::string author3;
+	std::stringstream ss_b3;
+	std::stringstream ss_a3;
+
+	std::string book4;
+	std::string author4;
+	std::stringstream ss_a4;
+	std::stringstream ss_b4;
+
+	ss_b1 << name1;
+	book1 = ss_b1.str();
+	ss_a1 << auth1;
+	author1 = ss_a1.str();
+
+	ss_b2 << name2;
+	book2 = ss_b2.str();
+	ss_a2 << auth2;
+	author2 = ss_a2.str();
+
+	ss_b3 << name3;
+	book3 = ss_b3.str();
+	ss_a3 << auth3;
+	author3 = ss_a3.str();
+
+	ss_b4 << name4;
+	book4 = ss_b4.str();
+	ss_a4 << auth4;
+	author4 = ss_a4.str();
+
+	Book myBook1;
+	myBook1.name = book1;
+	myBook1.authors = author1;
+
+	results.emplace_back(myBook1);
+
+	Book myBook2;
+	myBook2.name = book2;
+	myBook2.authors = author2;
+
+	results.emplace_back(myBook2);
+
+	Book myBook3;
+	myBook3.name = book3;
+	myBook3.authors = author3;
+
+	results.emplace_back(myBook3);
+
+	Book myBook4;
+	myBook4.name = book4;
+	myBook4.authors = author4;
+
+	results.emplace_back(myBook4);
+
+
+
 	// E.g. Book myBook;
 	//		// build the section name (E.g. book.1)
 	//		std::stringstream ss;
@@ -74,9 +165,15 @@ int main()
 
 	// Print the data
 	std::cout << "Here are all the books found in the data file..." << std::endl;
+	int i = 0;
 	for (auto book : books_from_file)
 	{
-		book.print();
+		if (i < 4)
+		{
+			std::cout << "[book." << i + 1 << "]" << std::endl;
+			i++;
+			book.print();
+		}
 	}
 
 	return 0;
